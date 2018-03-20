@@ -3,11 +3,10 @@ import { connect } from 'react-redux'
 import { addGun, removeGun, addGunAsync } from './index.redux'
 
 // 装饰器模式
-// @connect(
-//   state=>({ num: state}),
-//   {addGun, removeGun, addGunAsync}
-// )
-
+@connect(
+  state=>({ num: state}),
+  {addGun, removeGun, addGunAsync}
+)
 
 class App extends React.Component{
   render(){
@@ -22,11 +21,11 @@ class App extends React.Component{
     ) 
   }
 }
-const mapStateProps = (state) => {
-  return {
-    num: state
-  }
-}
-const actionCreators = { addGun, removeGun, addGunAsync }
-App = connect(mapStateProps, actionCreators)(App)
+// const mapStateProps = (state) => {
+//   return {
+//     num: state
+//   }
+// }
+// const actionCreators = { addGun, removeGun, addGunAsync }
+// App = connect(mapStateProps, actionCreators)(App)
 export default App;

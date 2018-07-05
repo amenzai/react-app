@@ -1,69 +1,69 @@
 
 import React from 'react'
-import {NavBar,InputItem, TextareaItem, Button} from 'antd-mobile'
+import { NavBar, InputItem, TextareaItem, Button } from 'antd-mobile'
 import AvatarSelector from '../../component/avatar-selector/avatar-selector'
-import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
-import {update} from '../../redux/user.redux'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { update } from '../../redux/user.redux'
 
 @connect(
-	state=>state.user,
-	{update}
+	state => state.user,
+	{ update }
 )
-class BossInfo extends React.Component{
+class BossInfo extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			title:'',
-			desc:'',
-			company:'',
-			money:''
+			title: '',
+			desc: '',
+			company: '',
+			money: ''
 		}
 	}
-	onChange(key,val){
+	onChange(key, val) {
 		this.setState({
-			[key]:val
+			[key]: val
 		})
 	}
-	render(){
+	render() {
 		const path = this.props.location.pathname
 		const redirect = this.props.redirectTo
 		console.log(this.props)
 		return (
 			<div>
-				{redirect&&redirect!==path? <Redirect to={this.props.redirectTo}></Redirect> :null}
+				{redirect && redirect !== path ? <Redirect to={this.props.redirectTo}></Redirect> : null}
 				<NavBar mode="dark" >BOSS完善信息页</NavBar>
-				<AvatarSelector 
-					selectAvatar={(imgname)=>{
+				<AvatarSelector
+					selectAvatar={(imgname) => {
 						this.setState({
-							avatar:imgname
+							avatar: imgname
 						})
 					}}
 				></AvatarSelector>
-				<InputItem onChange={(v)=>this.onChange('title',v)}>
+				<InputItem onChange={(v) => this.onChange('title', v)}>
 					招聘职位
 				</InputItem>
-				<InputItem onChange={(v)=>this.onChange('company',v)}>
+				<InputItem onChange={(v) => this.onChange('company', v)}>
 					公司名称
 				</InputItem>
-				<InputItem onChange={(v)=>this.onChange('money',v)}>
+				<InputItem onChange={(v) => this.onChange('money', v)}>
 					职位薪资
 				</InputItem>
 				<TextareaItem
-					onChange={(v)=>this.onChange('desc',v)}
+					onChange={(v) => this.onChange('desc', v)}
 					rows={3}
 					autoHeight
 					title='职位要求'
 				>
-					
+
 				</TextareaItem>
-				<Button 
-					onClick={()=>{
+				<Button
+					onClick={() => {
 						this.props.update(this.state)
 					}}
 					type='primary'>保存</Button>
 			</div>
-			
+
 		)
 	}
 }

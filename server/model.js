@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 // 链接mongo 并且使用imooc这个集合
-const DB_URL = 'mongodb://localhost:27017/react-chat'
+const DB_URL = 'mongodb://47.99.110.69:27017/react-chat'
 mongoose.connect(DB_URL)
 
 

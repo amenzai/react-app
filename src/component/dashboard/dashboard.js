@@ -1,15 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import { NavBar } from 'antd-mobile'
+import { NavBar } from 'antd-mobile'
+import { Redirect } from 'react-router-dom'
 import { Switch, Route } from 'react-router-dom'
 import NavLinkBar from '../navlink/navlink'
 import Boss from '../../component/boss/boss'
 import Genius from '../../component/genius/genius'
+import User from '../../component/user/user'
 function Msg() {
 	return <h2>消息列表页面</h2>
-}
-function User() {
-	return <h2>个人中心页面</h2>
 }
 @connect(
 	state => state
@@ -17,7 +16,7 @@ function User() {
 class Dashboard extends React.Component {
 
 	render() {
-		// const { pathname } = this.props.location
+		const { pathname } = this.props.location
 		console.log(this.props.location)
 		const user = this.props.user
 		const navList = [
@@ -53,10 +52,12 @@ class Dashboard extends React.Component {
 			}
 		]
 
+		const currentRoute = navList.find(v => v.path === pathname)
 
 		return (
 			<div>
-				{/* <NavBar className='fixd-header' mode='dard'>{navList.find(v => v.path === pathname).title}</NavBar> */}
+				
+				<NavBar className='fixd-header' mode='dard'>{ !!currentRoute ? currentRoute.title : <Redirect to='404' /> }</NavBar>
 				<div style={{ marginTop: 45 }}>
 					<Switch>
 						{navList.map(v => (

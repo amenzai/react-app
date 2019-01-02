@@ -24,6 +24,7 @@ class AuthRoute extends React.Component {
 					if (res.data.code === 0) {
 						// 有登录信息de
 						this.props.loadData(res.data.data)
+						this.props.history.push(`/${res.data.data.type}`)
 					} else {
 						this.props.history.push('/login')
 					}
@@ -36,6 +37,7 @@ class AuthRoute extends React.Component {
 		// 用户是否完善信息（选择头像 个人简介）
 	}
 	render() {
+		console.log(123);
 		return null
 	}
 

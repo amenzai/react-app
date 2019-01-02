@@ -20,6 +20,10 @@ const store = createStore(reducers, compose(
 	window.devToolsExtension ? window.devToolsExtension() : f => f
 ))
 
+const NoMatchRoute = () => (<h2>404 page</h2>)
+
+const Index = () => (null)
+
 // boss genius me msg 4个页面
 ReactDom.render(
 	(<Provider store={store}>
@@ -28,10 +32,12 @@ ReactDom.render(
 				<AuthRoute></AuthRoute>
 				<Switch>
 
+					<Route path='/' component={Index} exact></Route>
 					<Route path='/bossinfo' component={BossInfo}></Route>
 					<Route path='/geniusinfo' component={GeniusInfo}></Route>
 					<Route path='/login' component={Login}></Route>
 					<Route path='/register' component={Register}></Route>
+					<Route path='/404' component={NoMatchRoute}></Route>
 					<Route component={Dashboard}></Route>
 				</Switch>
 
